@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "billing/create"
   get "home/index"
   get "home/pricing"
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   
   # Public pages
   root "home#index"

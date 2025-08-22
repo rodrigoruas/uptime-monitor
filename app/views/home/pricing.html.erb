@@ -1,4 +1,416 @@
-<div>
-  <h1 class="font-bold text-4xl">Home#pricing</h1>
-  <p>Find me in app/views/home/pricing.html.erb</p>
+<!-- Pricing Page -->
+<div class="min-h-screen bg-gray-900 text-white">
+  <!-- Navigation -->
+  <nav class="bg-gray-800 border-b border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <%= link_to root_path, class: "text-xl font-bold text-green-400" do %>
+            📊 Uptime Monitor
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= link_to "Home", root_path, class: "text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <% if user_signed_in? %>
+            <%= link_to "Dashboard", dashboard_path, class: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium" %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path, class: "text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Get Started", new_user_registration_path, class: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Pricing Header -->
+  <div class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-extrabold sm:text-5xl">
+          Simple, affordable pricing
+        </h1>
+        <p class="mt-4 text-xl text-gray-300">
+          Choose the perfect plan for your monitoring needs. Start free, upgrade anytime.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Plans -->
+  <div class="pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        
+        <!-- Free Plan -->
+        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+          <div class="text-center">
+            <h3 class="text-lg font-medium text-white">Free</h3>
+            <div class="mt-4">
+              <span class="text-4xl font-extrabold text-white">€0</span>
+              <span class="text-gray-400">/forever</span>
+            </div>
+          </div>
+          <ul class="mt-6 space-y-4">
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">1 monitor</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">3-minute checks</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Email notifications</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">30-day data retention</p>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to new_user_registration_path, class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-500" do %>
+              Get started
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Starter Plan -->
+        <div class="bg-gray-800 border-2 border-green-500 rounded-lg p-6 relative">
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <span class="bg-green-500 text-white px-3 py-1 text-xs font-medium rounded-full">Popular</span>
+          </div>
+          <div class="text-center">
+            <h3 class="text-lg font-medium text-white">Starter</h3>
+            <div class="mt-4">
+              <span class="text-4xl font-extrabold text-white">€5</span>
+              <span class="text-gray-400">/month</span>
+            </div>
+          </div>
+          <ul class="mt-6 space-y-4">
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">5 monitors</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">1-minute checks</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Email & SMS alerts</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">90-day data retention</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">3 team members</p>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to new_user_registration_path, class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700" do %>
+              Start free trial
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Professional Plan -->
+        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+          <div class="text-center">
+            <h3 class="text-lg font-medium text-white">Professional</h3>
+            <div class="mt-4">
+              <span class="text-4xl font-extrabold text-white">€15</span>
+              <span class="text-gray-400">/month</span>
+            </div>
+          </div>
+          <ul class="mt-6 space-y-4">
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">25 monitors</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">30-second checks</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">All notification types</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">1-year data retention</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">10 team members</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">API access</p>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to new_user_registration_path, class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700" do %>
+              Start free trial
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Business Plan -->
+        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+          <div class="text-center">
+            <h3 class="text-lg font-medium text-white">Business</h3>
+            <div class="mt-4">
+              <span class="text-4xl font-extrabold text-white">€35</span>
+              <span class="text-gray-400">/month</span>
+            </div>
+          </div>
+          <ul class="mt-6 space-y-4">
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">100 monitors</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">10-second checks</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">All features</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Unlimited data retention</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Unlimited team members</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Custom status pages</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Priority support</p>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to new_user_registration_path, class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700" do %>
+              Start free trial
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+          <div class="text-center">
+            <h3 class="text-lg font-medium text-white">Enterprise</h3>
+            <div class="mt-4">
+              <span class="text-4xl font-extrabold text-white">€99</span>
+              <span class="text-gray-400">/month</span>
+            </div>
+          </div>
+          <ul class="mt-6 space-y-4">
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Unlimited monitors</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">5-second checks</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Everything in Business</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">White-label options</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Dedicated support</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">Custom integrations</p>
+            </li>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-sm text-gray-300">SLA guarantee</p>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to new_user_registration_path, class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700" do %>
+              Contact sales
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="bg-gray-800 py-12">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white">Frequently asked questions</h2>
+      </div>
+      <div class="mt-12 space-y-8">
+        <div>
+          <h3 class="text-lg font-medium text-white">What happens during the free trial?</h3>
+          <p class="mt-2 text-gray-300">
+            You get full access to your chosen plan for 14 days. No credit card required. If you don't upgrade, your account automatically switches to the free plan.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-medium text-white">Can I change plans anytime?</h3>
+          <p class="mt-2 text-gray-300">
+            Yes! You can upgrade or downgrade your plan anytime. Changes take effect immediately and we'll prorate the billing.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-medium text-white">What payment methods do you accept?</h3>
+          <p class="mt-2 text-gray-300">
+            We accept all major credit cards (Visa, MasterCard, American Express) through our secure Stripe integration.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-medium text-white">How reliable is your monitoring?</h3>
+          <p class="mt-2 text-gray-300">
+            Our monitoring infrastructure has 99.9% uptime. We monitor from multiple locations to ensure accurate results and minimize false positives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 border-t border-gray-700">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-gray-400">© 2024 Uptime Monitor. Built with Rails 8.</p>
+      </div>
+    </div>
+  </footer>
 </div>
