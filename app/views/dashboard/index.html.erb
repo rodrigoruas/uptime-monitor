@@ -1,0 +1,184 @@
+<div class="space-y-6" data-controller="monitors">
+  <!-- Header -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-white">Dashboard</h1>
+    <%= link_to "Add New Monitor", new_site_monitor_path, 
+        class: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium" %>
+  </div>
+
+  <!-- Stats Overview -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
+            📊
+          </div>
+        </div>
+        <div class="ml-4">
+          <p class="text-sm font-medium text-gray-400">Total Monitors</p>
+          <p class="text-2xl font-semibold text-white"><%= @total_monitors %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-green-600 rounded-md flex items-center justify-center">
+            ✅
+          </div>
+        </div>
+        <div class="ml-4">
+          <p class="text-sm font-medium text-gray-400">Monitors Up</p>
+          <p class="text-2xl font-semibold text-green-400"><%= @monitors_up %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-red-600 rounded-md flex items-center justify-center">
+            ❌
+          </div>
+        </div>
+        <div class="ml-4">
+          <p class="text-sm font-medium text-gray-400">Monitors Down</p>
+          <p class="text-2xl font-semibold text-red-400"><%= @monitors_down %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-purple-600 rounded-md flex items-center justify-center">
+            📈
+          </div>
+        </div>
+        <div class="ml-4">
+          <p class="text-sm font-medium text-gray-400">Average Uptime</p>
+          <p class="text-2xl font-semibold text-purple-400"><%= @average_uptime %>%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monitors List -->
+  <div class="bg-gray-800 rounded-lg border border-gray-700">
+    <div class="px-6 py-4 border-b border-gray-700">
+      <h2 class="text-lg font-medium text-white">Your Monitors</h2>
+    </div>
+    
+    <% if @site_monitors.any? %>
+      <div class="divide-y divide-gray-700">
+        <% @site_monitors.each do |monitor| %>
+          <div class="p-6 hover:bg-gray-750" data-monitor-id="<%= monitor.id %>">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <% case monitor.status %>
+                  <% when 'up' %>
+                    <div class="status-indicator w-3 h-3 bg-green-400 rounded-full"></div>
+                  <% when 'down' %>
+                    <div class="status-indicator w-3 h-3 bg-red-400 rounded-full"></div>
+                  <% else %>
+                    <div class="status-indicator w-3 h-3 bg-gray-400 rounded-full"></div>
+                  <% end %>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-medium text-white">
+                    <%= link_to monitor.name, site_monitor_path(monitor), class: "monitor-name hover:text-green-400" %>
+                  </h3>
+                  <p class="text-sm text-gray-400"><%= monitor.url %></p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-4">
+                <div class="text-right">
+                  <p class="text-sm font-medium text-white uptime-percentage">
+                    <%= monitor.uptime_percentage %>% uptime
+                  </p>
+                  <p class="text-xs text-gray-400 last-checked">
+                    <% if monitor.last_checked_at %>
+                      Last checked <%= time_ago_in_words(monitor.last_checked_at) %> ago
+                    <% else %>
+                      Never checked
+                    <% end %>
+                  </p>
+                  <% if monitor.average_response_time > 0 %>
+                    <p class="text-xs text-gray-400 response-time">
+                      <%= monitor.average_response_time.round(0) %>ms avg
+                    </p>
+                  <% end %>
+                </div>
+                
+                <div class="flex space-x-2">
+                  <%= link_to site_monitor_path(monitor), class: "text-blue-400 hover:text-blue-300" do %>
+                    👁️
+                  <% end %>
+                  <%= link_to edit_site_monitor_path(monitor), class: "text-yellow-400 hover:text-yellow-300" do %>
+                    ✏️
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="p-6 text-center">
+        <div class="text-gray-400">
+          <p class="text-lg">No monitors yet</p>
+          <p class="mt-2">Create your first monitor to start tracking uptime</p>
+        </div>
+        <%= link_to "Create Monitor", new_site_monitor_path, 
+            class: "mt-4 inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="bg-gray-800 rounded-lg border border-gray-700">
+    <div class="px-6 py-4 border-b border-gray-700">
+      <h2 class="text-lg font-medium text-white">Recent Activity</h2>
+    </div>
+    
+    <% if @recent_checks.any? %>
+      <div class="divide-y divide-gray-700">
+        <% @recent_checks.each do |check| %>
+          <div class="px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <% if check.success? %>
+                    <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <% else %>
+                    <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <% end %>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-white">
+                    <strong><%= check.site_monitor.name %></strong> - 
+                    <%= check.status_text %>
+                    <% if check.response_time %>
+                      (<%= check.response_time.round(0) %>ms)
+                    <% end %>
+                  </p>
+                  <p class="text-xs text-gray-400">
+                    <%= time_ago_in_words(check.checked_at) %> ago
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="p-6 text-center text-gray-400">
+        <p>No recent activity</p>
+      </div>
+    <% end %>
+  </div>
+</div>
